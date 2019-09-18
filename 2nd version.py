@@ -122,7 +122,7 @@ w5 = np.random.randn(300, 10)
 b5 = np.random.randn(1, 10)
 
 iterations = 10
-lr = 0.001
+lr = 0.0001
 costlist = []
 
 TrainingDataTarget = np.load("TrainingDataTarget.npy", allow_pickle=True)
@@ -157,10 +157,12 @@ for i in tqdm(range(iterations)):
 
     z5 = np.dot(a4, w5) + b5
     a5 = softmax_broadcast(z5)
+    print(a5.shape)
     #a5 - 42000 x 10
 
     cost = cross_ent(TargetData1, a5)
     costlist.append(cost)
+    print(cost)
 
     #backprop
     dcda5 = cross_ent_d(TargetData1, a5)
